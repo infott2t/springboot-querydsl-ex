@@ -1,4 +1,4 @@
-# springboot-querydsl-ex 개발용, First Instance Project, Web Programming
+# First Instance Project (springboot jpa + queryDSL)
 
 
 웹 서비스 개발, 엔티티 CRUD확인용 프로젝트입니다. 
