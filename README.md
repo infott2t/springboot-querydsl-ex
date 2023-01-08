@@ -1,9 +1,9 @@
-# springboot-querydsl-ex
+# springboot-querydsl-ex 개발용, First Instance Project, Web Programming
 
 
 웹 서비스 개발, 엔티티 CRUD확인용 프로젝트입니다. 
 
-스프링부트 JPA 개발 프로젝트이네요.
+SpringBoot JPA + QueryDSL 개발 프로젝트이네요.
 
 <p>관련화면 캡처했습니다. 서비스할 데이터를 게시판형태로 출력하고, 데이터의 리스트 보기, 입력, 수정, 삭제가 가능하게 만들었습니다.</p> 
 <p>직관적이고, 개발하는데에 필요한 작업이라고 생각해서 프로젝트로 만들었습니다.</p><br/>
