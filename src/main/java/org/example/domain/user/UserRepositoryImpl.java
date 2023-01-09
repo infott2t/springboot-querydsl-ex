@@ -52,7 +52,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                         user.roleAdmin,
                         user.role,
                         user.isDel,
-                        user.createDate,
+                        user.createdDate,
                         user.modifiedDate
                 )).from(user)
                 .leftJoin(user.roleGuest, roleGUEST)
@@ -154,14 +154,15 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                         user.roleAdmin,
                       user.role,
                       user.isDel,
-                      user.createDate,
+                      user.createdDate,
                       user.modifiedDate
                 )).from(user)
                 .leftJoin(user.roleGuest, roleGUEST)
                 .leftJoin(user.roleUser, roleUSER)
                 .leftJoin(user.roleCompany, roleCOMPANY)
                 .leftJoin(user.roleAdmin, roleADMIN)
-                .orderBy(user.id.asc())
+                .orderBy(user.id.desc())
+                .where(user.isDel.eq("N"))
                 .fetch();
 
 

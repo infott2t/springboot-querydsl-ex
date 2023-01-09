@@ -54,9 +54,10 @@
 <div class="container" style="margin: 0px 10px;">
 
     <br/>
-    <h2>User 테이블</h2>
+    <a th:href="@{/administer/instanceurl/user}"><h2>User 테이블</h2></a>
     <br/>
-    <p><button class="btn btn-sm btn-success" th:href="@{/administer/instanceurl/user/insert}">쓰기</button>&nbsp;&nbsp;<a class="btn btn-sm btn-link" href="javascript:window.history.back();">뒤로</a></p>
+
+    <p><a class="btn btn-sm btn-success" th:href="@{/administer/instanceurl/user/insert}">쓰기</a>&nbsp;&nbsp;<a class="btn btn-sm btn-link" href="javascript:window.history.back();">뒤로</a></p>
 
     <table class="table table-sm" style="font-size: 12px;">
         <thead>
@@ -83,7 +84,7 @@
             <td th:text="${user.name}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.role}"></td>
-            <td th:text="${#temporals.format(user.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+            <td th:text="${#temporals.format(user.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
             <td th:text="${#temporals.format(user.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
             <td th:text="${user.roleGuest?.id}"></td>
             <td th:text="${user.roleUser?.id}"></td>
@@ -91,8 +92,8 @@
             <td th:text="${user.roleAdmin?.id}"></td>
             <td th:text="${user.picture}"></td>
             <td th:text="${user.isDel}"></td>
-            <td><button class="btn btn-sm btn-success font-12" th:href="@{/administer/instanceurl/user/update/{id}(id=${user.id})}"  >수정</button></td>
-            <td><button class="btn btn-sm btn-danger font-12" th:href="@{/administer/instanceurl/user/delete/{id}(id=${user.id})}"  >삭제</button></td>
+            <td><a class="btn btn-sm btn-success font-12" th:href="@{/administer/instanceurl/user/update(id=${user.id})}"  >수정</a></td>
+            <td><a class="btn btn-sm btn-danger font-12" th:href="@{/administer/instanceurl/user/delete(id=${user.id})}"  >삭제</a></td>
         </tbody>
     </table>
 

@@ -15,4 +15,9 @@ public class RoleGUESTService {
     public List<RoleGUESTApiDto> searchFindAllDesc() {
         return  roleGUESTRepository.searchFindAllDesc();
     }
+
+    @Transactional(readOnly = true)
+    public RoleGUEST findById(Long valueOf) {
+       return roleGUESTRepository.findById(valueOf).orElseThrow();
+    }
 }

@@ -1,6 +1,7 @@
 package org.example.domain.user;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.domain.roleclass.admin.RoleADMIN;
 import org.example.domain.roleclass.company.RoleCOMPANY;
 import org.example.domain.roleclass.guest.RoleGUEST;
@@ -9,7 +10,7 @@ import org.example.domain.roleclass.user.RoleUSER;
 import java.time.LocalDateTime;
 
 @Data
-
+@NoArgsConstructor
 public class UserApiDto {
     private Long id;
 
@@ -25,13 +26,13 @@ public class UserApiDto {
     private Role role;
     private String isDel;
 
-    private LocalDateTime createDate;
+    private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
     @QueryProjection
     public UserApiDto(Long id
 , String name, String email, String picture,RoleGUEST roleGuest, RoleUSER roleUser, RoleCOMPANY roleCompany,RoleADMIN roleAdmin, Role role, String isDel
-, LocalDateTime createDate, LocalDateTime modifiedDate
+, LocalDateTime createdDate, LocalDateTime modifiedDate
 ) {
      this.id = id;
 
@@ -48,7 +49,7 @@ public class UserApiDto {
 
      this.isDel = isDel;
 
-     this.createDate = createDate;
+     this.createdDate = createdDate;
      this.modifiedDate = modifiedDate;
 
 

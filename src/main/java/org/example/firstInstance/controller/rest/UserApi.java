@@ -27,7 +27,7 @@ public class UserApi {
     private final RoleADMINService roleADMINService;
     private final RoleCOMPANYService roleCOMPANYService;
     private final RoleUSERService roleUSERService;
-
+/*
     @PostMapping(value="/api/user/insert")
     public Boolean write(@RequestBody RequestDto reqDto){
 
@@ -97,6 +97,8 @@ public class UserApi {
         //return new Result(200, "success", user); JSON 형태로 리턴할 때 사용. Result형 리턴.
         return true;
     }
+
+ */
     @PostMapping(value="/api/user/update")
     public Boolean update(@RequestBody RequestDto reqDto){
         User user = null; //저장할 USER 엔티티 초기화.

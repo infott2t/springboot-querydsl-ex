@@ -55,7 +55,7 @@ public class User extends BaseTimeEntity {
     private Role role;
 
     //상속했으나, QueryDsl에서 사용하기 위해 추가. 안적으면 변수명을 읽지 못함. Impl.java파일.
-    private LocalDateTime createDate;
+    private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
     @Builder
