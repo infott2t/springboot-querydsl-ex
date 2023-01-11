@@ -52,9 +52,9 @@
     </div>
   </nav>
 </div>
-<div class="container" style="margin: 0px 10px;">
+<div class="container" style="margin-left:auto; margin-right:auto; width:100%;">
   <br/>
-  <a class="btn btn-sm btn-link" th:href="@{/administer/instanceurl}"><i class="bi bi-chevron-double-left fa-3x"></i></a><a th:href="@{/administer/instanceurl/user}">
+  <a class="btn btn-sm btn-link" th:href="@{/administer/instanceurl/user}"><i class="bi bi-chevron-double-left fa-3x"></i></a><a th:href="@{/administer/instanceurl/user}">
   <span style="font-size:20px;">USER 테이블</span></a>
   <form name="search_form" th:action="@{/administer/instanceurl/user}" method="get" role="form" th:object="${condition}" class="d-flex justify-content-evenly">
     <table style="width:670px;" class="border border-5 d-flex justify-content-center caption-top">
@@ -100,7 +100,7 @@
 <!--
 
 -->
-  <table class="table table-sm" style="font-size: 12px;">
+  <table class="table table-sm" style="font-size: 12px;margin-left:auto; margin-right:auto;">
     <thead>
     <tr>
       <th>id</th>
