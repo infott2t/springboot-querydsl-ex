@@ -6,9 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import net.minidev.json.annotate.JsonIgnore;
+import org.example.domain.BaseTimeEntity;
 import org.example.domain.address.AddressStr;
 import org.example.domain.phone.PhoneStr;
 import org.example.domain.user.User;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -19,9 +21,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@SuperBuilder
 @Table(name="ROLE_USER")
-public class RoleUSER {
+public class RoleUSER extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,19 +39,22 @@ public class RoleUSER {
     private PhoneStr phoneStr;
 
 
-    private LocalDateTime createDate;
+
 
     @JsonIgnore
     @OneToMany(mappedBy = "roleUser")
     private final List<User> users = new ArrayList<>();
 
 
+    private LocalDateTime modifiedDate;
+    private LocalDateTime createdDate;
+
+    private String isDel;
 
 
     @Builder
-    public RoleUSER(AddressStr addressStr, PhoneStr phoneStr, LocalDateTime createDate) {
+    public RoleUSER(AddressStr addressStr, PhoneStr phoneStr) {
         this.addressStr = addressStr;
         this.phoneStr = phoneStr;
-        this.createDate = createDate;
     }
 }

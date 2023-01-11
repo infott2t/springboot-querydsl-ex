@@ -1,5 +1,7 @@
 package org.example.domain.roleclass.user;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
@@ -7,12 +9,14 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 import static org.example.domain.address.QAddressStr.addressStr;
 import static org.example.domain.phone.QPhoneStr.phoneStr;
 import static org.example.domain.roleclass.user.QRoleUSER.roleUSER;
-
+import static org.springframework.util.StringUtils.hasText;
 
 
 
@@ -33,13 +37,14 @@ public class RoleUSERRepositoryImpl implements RoleUSERRepositoryCustom {
                         roleUSER.id,
                         roleUSER.addressStr,
                         roleUSER.phoneStr,
-                        roleUSER.createDate
+                        roleUSER.createdDate,
+                        roleUSER.modifiedDate
                 )).from(roleUSER)
                 .leftJoin(roleUSER.addressStr, addressStr)
                 .leftJoin(roleUSER.phoneStr, phoneStr)
                 .where(
-                     //   searchAllV2Predicate(condition)
-                )
+                        searchAllV2Predicate(condition)
+                ).where(roleUSER.isDel.eq("N"))
                 .orderBy(roleUSER.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -49,15 +54,17 @@ public class RoleUSERRepositoryImpl implements RoleUSERRepositoryCustom {
                 .select(roleUSER.count())
                 .from(roleUSER)
                 .where(
-                    //    searchAllV2Predicate(condition)
-                )
+                        searchAllV2Predicate(condition)
+                ).where(roleUSER.isDel.eq("N"))
                 .fetch().get(0);
 
         return new PageImpl<>(content, pageable, total);
     }
 
-/*
-    private BooleanBuilder searchAllV2Predicate(ProductCategorySearchCondition condition){
+
+
+
+    private BooleanBuilder searchAllV2Predicate(RoleUSERSearchCondition condition){
         return new BooleanBuilder()
                 .and(condS(condition.getField(), condition.getS()))
                 .and(condSdate(condition.getSdate()))
@@ -69,19 +76,15 @@ public class RoleUSERRepositoryImpl implements RoleUSERRepositoryCustom {
         BooleanBuilder builder = new BooleanBuilder();
 
         if(hasText(field) && hasText(s)) {
-            if(field.equals("all")){
+            if(field.equals("address")){
 
-                builder.or(alliance.userTitle.like("%" + s + "%"));
-                builder.or(alliance.userContent.like("%" + s + "%"));
-                //builder.or(alliance.isrtDate.between(sdate, edate));
+                builder.or(roleUSER.addressStr.addrFull.like("%" + s + "%"));
 
-            } else if(field.equals("title")) {
 
-                builder.or(alliance.userTitle.like("%" + s + "%"));
 
-            } else if(field.equals("content")) {
+            } else if(field.equals("id")) {
 
-                builder.or(alliance.userContent.like("%" + s + "%"));
+                builder.or(roleUSER.id.eq(Long.valueOf(s)));
 
             }
         }
@@ -95,7 +98,7 @@ public class RoleUSERRepositoryImpl implements RoleUSERRepositoryCustom {
         if(hasText(sdate)){
             try {
                 LocalDateTime localDateTime = LocalDateTime.parse(sdate + "T00:00:00");
-                builder.or(alliance.isrtDate.goe(localDateTime)); // isrtDate >= sdate
+                builder.or(roleUSER.createdDate.goe(localDateTime)); // isrtDate >= sdate
 
             } catch (DateTimeParseException e) {
             }
@@ -108,14 +111,14 @@ public class RoleUSERRepositoryImpl implements RoleUSERRepositoryCustom {
         if(hasText(edate)) {
             try {
                 LocalDateTime localDateTime = LocalDateTime.parse(edate + "T00:00:00");
-                builder.or(alliance.isrtDate.loe(localDateTime)); // isrtDate <= edate
+                builder.or(roleUSER.createdDate.loe(localDateTime)); // isrtDate <= edate
 
             } catch (DateTimeParseException e) {
             }
         }
         return builder;
     }
-*/
+
 
 
     @Override
@@ -123,10 +126,12 @@ public class RoleUSERRepositoryImpl implements RoleUSERRepositoryCustom {
         List<RoleUSERApiDto> content = queryFactory.
                 select(Projections.constructor(RoleUSERApiDto.class,
                       roleUSER.id,
+                        roleUSER.id,
                         roleUSER.addressStr,
                         roleUSER.phoneStr,
-                      roleUSER.createDate
-                )).from(roleUSER)
+                        roleUSER.createdDate,
+                        roleUSER.modifiedDate
+                )).from(roleUSER).where(roleUSER.isDel.eq("N"))
                 .leftJoin(roleUSER.addressStr, addressStr)
                 .leftJoin(roleUSER.phoneStr, phoneStr)
                 .orderBy(roleUSER.id.asc())

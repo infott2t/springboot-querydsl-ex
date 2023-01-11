@@ -20,4 +20,9 @@ public class AddressStrService {
     public void save(AddressStr addressStr0) {
         addressStrRepository.save(addressStr0);
     }
+
+    @Transactional(readOnly = true)
+    public AddressStr findById(Long addressStrId) {
+        return addressStrRepository.findById(addressStrId).orElseThrow();
+    }
 }

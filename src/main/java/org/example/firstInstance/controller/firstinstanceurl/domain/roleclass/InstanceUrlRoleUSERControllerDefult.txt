@@ -1,0 +1,61 @@
+package org.example.firstinstance.controller.firstinstanceurl.domain.roleclass;
+
+import lombok.RequiredArgsConstructor;
+import org.example.domain.roleclass.user.RoleUSERApiDto;
+import org.example.domain.roleclass.user.RoleUSERSearchCondition;
+import org.example.domain.roleclass.user.RoleUSERService;
+import org.example.domain.user.UserApiDtoForm;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@RequiredArgsConstructor
+@Controller
+public class InstanceUrlRoleUSERControllerDefult {
+
+    private final RoleUSERService roleUSERService;
+
+    @GetMapping("/administer/firstinstanceurl/roleclass/user")
+    public String index(Model model, RoleUSERSearchCondition condition,
+                        @RequestParam(value="page", required=false) Integer page,
+                        Pageable pageable) throws Exception {
+
+        Page<RoleUSERApiDto> boards = roleUSERService.searchAllV2(condition, pageable);
+
+
+        model.addAttribute("boards", boards);
+        model.addAttribute("condition", condition);
+        model.addAttribute("page", pageable.getPageNumber()+1); // 0부터 시작, +1이 필요.
+
+        return "firstinstance/roleclass/user/index";
+    }
+
+    @GetMapping("/administer/instanceurl/roleclass/user/insert")
+    public String insert(Model model){
+        return "firstinstance/roleclass/user/insert";
+    }
+
+    @PostMapping("/administer/instanceurl/roleclass/user/insert_2")
+    public String insert_2(Model model, UserApiDtoForm userApiDtoForm){ return "redirect:/administer/instanceurl/user/insert";}
+
+    @GetMapping("/administer/instanceurl/roleclass/user/delete")
+    public String delete(@RequestParam(value="id")Long id, Model model) {
+        return "redirect:/administer/instanceurl/user/insert";
+    }
+
+    @GetMapping("/administer/instanceurl/roleclass/userr/update")
+    public String update(@RequestParam(value="id")Long id, Model model){
+        return "firstinstance/roleclass/user/update";
+    }
+
+    @PostMapping("/administer/instanceurl/roleclass/user/update_2")
+    public String update_2(Model model, UserApiDtoForm userApiDtoForm) {
+        return "redirect:/administer/instanceurl/user/insert";
+    }
+    
+
+}

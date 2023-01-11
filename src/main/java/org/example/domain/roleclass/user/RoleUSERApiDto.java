@@ -15,19 +15,18 @@ public class RoleUSERApiDto {
 
     private PhoneStr phoneStr;
 
-    private LocalDateTime createDate;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
 
     @QueryProjection
-    public RoleUSERApiDto(Long id, AddressStr addressStr, PhoneStr phoneStr, LocalDateTime createDate
-) {
-     this.id = id;
-    this.addressStr = addressStr;
-    this.phoneStr = phoneStr;
-
-     this.createDate = createDate;
-
-
+    public RoleUSERApiDto( Long id,AddressStr addressStr, PhoneStr phoneStr, LocalDateTime createdDate, LocalDateTime modifiedDate) {
+        this.id = id;
+        this.addressStr = addressStr;
+        this.phoneStr = phoneStr;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
     }
+
 /*Builder,    id().
 
  a().

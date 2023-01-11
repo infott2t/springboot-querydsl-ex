@@ -12,6 +12,7 @@ import org.example.domain.roleclass.user.RoleUSERService;
 import org.example.domain.user.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +38,8 @@ public class InstanceUrlUserController {
 
         @GetMapping("/administer/instanceurl/user")
         public String index(Model model, UserSearchCondition condition,
-                            @RequestParam(value="page", required=false) Integer page, Pageable pageable){
+                            @RequestParam(value="page", required=false) Integer page, @PageableDefault(size= 10)Pageable pageable)
+        {
 
             //firstInstance index의 처음 위치. 리스트 출력.
 
@@ -152,8 +154,12 @@ public class InstanceUrlUserController {
     @GetMapping("/administer/instanceurl/user/delete")
     public String delete(@RequestParam(value="id")Long id, Model model){
 
-            User user = userService.findById(id);
-
+            User user = null;
+            try{
+                user = userService.findById(id);
+            }catch(Exception e){
+                return "redirect:/administer/instanceurl/user/insert";
+            }
             user.setIsDel("Y");
             userService.save(user);
 

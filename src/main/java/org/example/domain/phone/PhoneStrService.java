@@ -20,4 +20,9 @@ public class PhoneStrService {
     public void save(PhoneStr phoneStr0) {
         phoneStrRepository.save(phoneStr0);
     }
+
+    @Transactional(readOnly = true)
+    public PhoneStr findById(Long phoneStrId) {
+       return phoneStrRepository.findById(phoneStrId).orElseThrow();
+    }
 }

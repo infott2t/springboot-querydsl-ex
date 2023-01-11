@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.data.web.config.PageableHandlerMethodArgumentResolverCustomizer;
 
 
 @SpringBootApplication
@@ -20,4 +21,5 @@ public class Application extends SpringBootServletInitializer {
     Hibernate5Module hibernate5Module() {
         return new Hibernate5Module();
     }
+
 }
