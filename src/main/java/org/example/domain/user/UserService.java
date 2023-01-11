@@ -1,6 +1,8 @@
 package org.example.domain.user;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,5 +46,10 @@ public class UserService {
 
         userRepository.save(user);
         return user;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<UserApiDto> searchAllV2(UserSearchCondition condition, Pageable pageable) {
+        return userRepository.searchAllV2(condition, pageable);
     }
 }

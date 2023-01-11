@@ -60,8 +60,8 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                 .leftJoin(user.roleCompany, roleCOMPANY)
                 .leftJoin(user.roleAdmin, roleADMIN)
                 .where(
-                     //   searchAllV2Predicate(condition)
-                )
+                        searchAllV2Predicate(condition)
+                ).where(user.isDel.eq("N"))
                 .orderBy(user.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -71,15 +71,15 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                 .select(user.count())
                 .from(user)
                 .where(
-                    //    searchAllV2Predicate(condition)
-                )
+                        searchAllV2Predicate(condition)
+                ).where(user.isDel.eq("N"))
                 .fetch().get(0);
 
         return new PageImpl<>(content, pageable, total);
     }
 
-/*
-    private BooleanBuilder searchAllV2Predicate(ProductCategorySearchCondition condition){
+
+    private BooleanBuilder searchAllV2Predicate(UserSearchCondition condition){
         return new BooleanBuilder()
                 .and(condS(condition.getField(), condition.getS()))
                 .and(condSdate(condition.getSdate()))
@@ -91,19 +91,14 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         BooleanBuilder builder = new BooleanBuilder();
 
         if(hasText(field) && hasText(s)) {
-            if(field.equals("all")){
+            if(field.equals("id")){
 
-                builder.or(alliance.userTitle.like("%" + s + "%"));
-                builder.or(alliance.userContent.like("%" + s + "%"));
-                //builder.or(alliance.isrtDate.between(sdate, edate));
+                builder.or(user.id.eq(Long.parseLong(s)));
 
-            } else if(field.equals("title")) {
 
-                builder.or(alliance.userTitle.like("%" + s + "%"));
+            } else if(field.equals("email")) {
 
-            } else if(field.equals("content")) {
-
-                builder.or(alliance.userContent.like("%" + s + "%"));
+                builder.or(user.email.like("%" + s + "%"));
 
             }
         }
@@ -117,7 +112,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         if(hasText(sdate)){
             try {
                 LocalDateTime localDateTime = LocalDateTime.parse(sdate + "T00:00:00");
-                builder.or(alliance.isrtDate.goe(localDateTime)); // isrtDate >= sdate
+                builder.or(user.createdDate.goe(localDateTime)); // isrtDate >= sdate
 
             } catch (DateTimeParseException e) {
             }
@@ -130,14 +125,14 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         if(hasText(edate)) {
             try {
                 LocalDateTime localDateTime = LocalDateTime.parse(edate + "T00:00:00");
-                builder.or(alliance.isrtDate.loe(localDateTime)); // isrtDate <= edate
+                builder.or(user.createdDate.loe(localDateTime)); // isrtDate <= edate
 
             } catch (DateTimeParseException e) {
             }
         }
         return builder;
     }
-*/
+
 
 
     @Override

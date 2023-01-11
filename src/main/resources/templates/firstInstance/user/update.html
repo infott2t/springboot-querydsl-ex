@@ -53,15 +53,49 @@
   </nav>
 </div>
 <div class="container" style="margin: 0px 10px;">
-
   <br/>
-  <a th:href="@{/administer/instanceurl/user}"><h2>User 테이블</h2></a>
+  <a class="btn btn-sm btn-link" th:href="@{/administer/instanceurl}"><i class="bi bi-chevron-double-left fa-3x"></i></a><a th:href="@{/administer/instanceurl/user}">
+  <span style="font-size:20px;">USER 테이블</span></a>
+  <form name="search_form" th:action="@{/administer/instanceurl/user}" method="get" role="form" th:object="${condition}" class="d-flex justify-content-evenly">
+    <table style="width:670px;" class="border border-5 d-flex justify-content-center caption-top">
+      <colgroup>
+        <col style="width:10%;">
+        <col style="width:35%;">
+        <col style="width:10%;">
+        <col style="width:35%;">
+        <col style="width:auto;">
+        <col style="width:auto;">
+      </colgroup>
+      <tbody>
+      <tr>
+        <th class="font-12">키워드</th>
+        <td class="font-12">
+          <select id="field" name="field" style="width:60px;" title="키워드 선택">
+            <option th:value="id" th:selected="${#strings.trim(param.field) eq 'id'}">id</option>
+            <option th:value="email" th:selected="${#strings.trim(param.field) eq 'email'}" selected>email</option>
+          </select>
+          <input class="font-12" type="text" title="키워드" placeholder="키워드명 입력" name="s" th:field="*{s}" autocomplete="on"  style="vertical-align: top; width:100px;">
+        </td>
+        <th scope="row" class="font-12">&nbsp;등록일자</th>
+        <td class="font-12">
+          <input type="text" placeholder="시작일" class="ico_date" name="sdate"
+                 id="datepicker1" th:field="*{sdate}" autocomplete="on" style="width:100px;">
+          <span class="hypen">~</span>
+          <input type="text" placeholder="종료일" class="ico_date" name="edate"
+                 id="datepicker2" th:field="*{edate}" autocomplete="on" style="width:100px;">
+        </td>
+        <td>
+          &nbsp;<button class="btn btn-success btn-sm">검색</button>
+        </td>
+        <td>
+          &nbsp;<a class="btn btn-sm btn-primary" th:href="@{/administer/instanceurl/user/insert}">쓰기</a>&nbsp;
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </form>
   <br/>
-
-
-  </th:block>
-
-  <p>데이터 입력 &nbsp;&nbsp;<a class="btn btn-sm btn-link" href="javascript:window.history.back();">뒤로</a></p>
 
 <!--
 
@@ -141,6 +175,59 @@
     </tr>
     </tbody>
   </table>
+  <!-- 페이징 -->
+  <div th:if="${!lists.isEmpty()}">
+    <!-- 전역 변수 선언 -->
+    <nav
+            th:with="
+                pageNumber = ${lists.pageable.pageNumber},
+                pageSize = ${lists.pageable.pageSize},
+                totalPages = ${lists.totalPages},
+                startPage = ${T(Math).floor(pageNumber / pageSize) * pageSize + 1},
+                tempEndPage = ${startPage + pageSize - 1},
+                endPage = (${tempEndPage < totalPages ? tempEndPage : totalPages})"
+            aria-label="Page navigation"
+    >
+      <ul class="pagination " style="justify-content:center;">
+        <!-- 처음으로 이동 -->
+        <li th:classappend="${pageNumber < pageSize} ? 'disabled'" class="page-item">
+          <a class="page-link" th:href="@{/administer/instanceurl/user(page=0)}">
+            <span>&laquo;</span>
+            <span class="sr-only">First</span>
+          </a>
+        </li>
+
+        <!-- 이전으로 이동 -->
+        <li th:classappend="${lists.first} ? 'disabled'" class="page-item">
+          <a class="page-link" th:href="${lists.first} ? '#' : @{/administer/instanceurl/user(page=${pageNumber - 1})}" aria-label="Previous">
+            <span aria-hidden="true">&lt;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+
+        <!-- 특정 페이지로 이동 -->
+        <li th:each="page: ${#numbers.sequence(startPage, endPage)}" th:classappend="${page == pageNumber + 1} ? 'active'" class="page-item">
+          <a th:text="${page}" class="page-link" th:href="@{/administer/instanceurl/user(page=${page - 1})}"></a>
+        </li>
+
+        <!-- 다음으로 이동 -->
+        <li th:classappend="${lists.last} ? 'disabled'" class="page-item">
+          <a class="page-link" th:href="${boards.last} ? '#' : @{/administer/instanceurl/user(page=${pageNumber + 1})}" aria-label="Next">
+            <span aria-hidden="true">&gt;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+
+        <!-- 마지막으로 이동 -->
+        <li th:classappend=" ${T(Math).floor(totalPages / pageSize) * pageSize - 1 <= startPage} ? 'disabled'" class="page-item">
+          <a class="page-link" th:href="@{/administer/instanceurl/user(page=${totalPages - 1})}">
+            <span>&raquo;</span>
+            <span class="sr-only">Last</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div> <!-- /페이징 -->
   <!--
   </form>
 -->

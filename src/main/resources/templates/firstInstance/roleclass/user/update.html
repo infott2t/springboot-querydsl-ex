@@ -173,7 +173,7 @@
       <ul class="pagination " style="justify-content:center;">
         <!-- 처음으로 이동 -->
         <li th:classappend="${pageNumber < pageSize} ? 'disabled'" class="page-item">
-          <a class="page-link" th:href="@{/administer/instanceurl/roleclass/user(page=0)}">
+          <a class="page-link" th:href="@{/administer/instanceurl/user(page=0)}">
             <span>&laquo;</span>
             <span class="sr-only">First</span>
           </a>
@@ -181,7 +181,7 @@
 
         <!-- 이전으로 이동 -->
         <li th:classappend="${boards.first} ? 'disabled'" class="page-item">
-          <a class="page-link" th:href="${boards.first} ? '#' : @{/administer/instanceurl/roleclass/user(page=${pageNumber - 1})}" aria-label="Previous">
+          <a class="page-link" th:href="${boards.first} ? '#' : @{/administer/instanceurl/user(page=${pageNumber - 1})}" aria-label="Previous">
             <span aria-hidden="true">&lt;</span>
             <span class="sr-only">Previous</span>
           </a>
@@ -189,12 +189,12 @@
 
         <!-- 특정 페이지로 이동 -->
         <li th:each="page: ${#numbers.sequence(startPage, endPage)}" th:classappend="${page == pageNumber + 1} ? 'active'" class="page-item">
-          <a th:text="${page}" class="page-link" th:href="@{/administer/instanceurl/roleclass/user(page=${page - 1})}"></a>
+          <a th:text="${page}" class="page-link" th:href="@{/administer/instanceurl/user(page=${page - 1})}"></a>
         </li>
 
         <!-- 다음으로 이동 -->
         <li th:classappend="${boards.last} ? 'disabled'" class="page-item">
-          <a class="page-link" th:href="${boards.last} ? '#' : @{/administer/instanceurl/roleclass/user(page=${pageNumber + 1})}" aria-label="Next">
+          <a class="page-link" th:href="${boards.last} ? '#' : @{/administer/instanceurl/user(page=${pageNumber + 1})}" aria-label="Next">
             <span aria-hidden="true">&gt;</span>
             <span class="sr-only">Next</span>
           </a>
@@ -202,7 +202,7 @@
 
         <!-- 마지막으로 이동 -->
         <li th:classappend=" ${T(Math).floor(totalPages / pageSize) * pageSize - 1 <= startPage} ? 'disabled'" class="page-item">
-          <a class="page-link" th:href="@{/administer/instanceurl/roleclass/user(page=${totalPages - 1})}">
+          <a class="page-link" th:href="@{/administer/instanceurl/user(page=${totalPages - 1})}">
             <span>&raquo;</span>
             <span class="sr-only">Last</span>
           </a>
