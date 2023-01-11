@@ -212,7 +212,7 @@
 
         <!-- 다음으로 이동 -->
         <li th:classappend="${lists.last} ? 'disabled'" class="page-item">
-          <a class="page-link" th:href="${boards.last} ? '#' : @{/administer/instanceurl/user(page=${pageNumber + 1})}" aria-label="Next">
+          <a class="page-link" th:href="${lists.last} ? '#' : @{/administer/instanceurl/user(page=${pageNumber + 1})}" aria-label="Next">
             <span aria-hidden="true">&gt;</span>
             <span class="sr-only">Next</span>
           </a>

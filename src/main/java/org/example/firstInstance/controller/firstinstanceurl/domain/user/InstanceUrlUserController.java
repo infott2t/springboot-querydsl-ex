@@ -43,20 +43,23 @@ public class InstanceUrlUserController {
 
             //firstInstance index의 처음 위치. 리스트 출력.
 
-            List<UserApiDto> lists = userService.searchFindAllDesc();
+            //List<UserApiDto> lists = userService.searchFindAllDesc();
+            Page<UserApiDto> lists = userService.searchAllV2(condition, pageable);
 
             model.addAttribute("lists", lists);
-
+            model.addAttribute("condition", condition);
 
             return "firstinstance/user/index";
         }
 
         @GetMapping("/administer/instanceurl/user/insert")
-    public String insert(Model model){
+    public String insert(Model model,UserSearchCondition condition,
+                         @RequestParam(value="page", required=false) Integer page, @PageableDefault(size= 10)Pageable pageable){
 
-            List<UserApiDto> lists = userService.searchFindAllDesc();
+            Page<UserApiDto> lists = userService.searchAllV2(condition, pageable);
 
             model.addAttribute("lists", lists);
+            model.addAttribute("condition", condition);
 
             UserApiDtoForm userForm = new UserApiDtoForm();
             model.addAttribute("userForm",userForm);
@@ -158,16 +161,17 @@ public class InstanceUrlUserController {
             try{
                 user = userService.findById(id);
             }catch(Exception e){
-                return "redirect:/administer/instanceurl/user/insert";
+                return "redirect:/administer/instanceurl/user/";
             }
             user.setIsDel("Y");
             userService.save(user);
 
-            return "redirect:/administer/instanceurl/user/insert";
+            return "redirect:/administer/instanceurl/user/";
     }
 
     @GetMapping("/administer/instanceurl/user/update")
-    public String update(@RequestParam(value="id")Long id, Model model){
+    public String update(@RequestParam(value="id")Long id, Model model,UserSearchCondition condition,
+                         @RequestParam(value="page", required=false) Integer page, @PageableDefault(size= 10)Pageable pageable){
 
             User user = null;
             try {
@@ -176,9 +180,10 @@ public class InstanceUrlUserController {
             }catch(Exception e){
                 return "redirect:/administer/instanceurl/user/insert";
             }
-        List<UserApiDto> lists = userService.searchFindAllDesc();
+        Page<UserApiDto> lists = userService.searchAllV2(condition, pageable);
 
         model.addAttribute("lists", lists);
+        model.addAttribute("condition", condition);
 
         UserApiDtoForm userForm = new UserApiDtoForm();
 

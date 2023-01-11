@@ -183,12 +183,7 @@ public class InstanceUrlRoleUSERController {
 
         roleUSERService.save(roleUSER);
 
-        Page<RoleUSERApiDto> boards = roleUSERService.searchAllV2(condition, pageable);
 
-
-        model.addAttribute("boards", boards);
-        model.addAttribute("condition", condition);
-        model.addAttribute("page", pageable.getPageNumber()+1); // 0부터 시작, +1이 필요.
 
 
         return "redirect:/administer/instanceurl/roleclass/user/insert";

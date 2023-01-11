@@ -12,4 +12,11 @@ public class InstanceUrlController {
         return "firstInstance/index";
     }
 
+    // 개발중, 테스트용 url연결 만듬.
+    @GetMapping("/")
+    public String index2(){
+
+        return "redirect:/administer/instanceurl";
+    }
+
 }
