@@ -35,6 +35,7 @@ public class CoperationRepositoryImpl implements CoperationRepositoryCustom {
                         coperation.id,
                         coperation.coperationName  ,
                         coperation.catchPrice  ,
+                        coperation.isDel,
                         coperation.modifiedDate,
                         coperation.createdDate
 

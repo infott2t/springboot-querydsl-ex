@@ -19,11 +19,12 @@ public class CoperationApiDto {
 
     @QueryProjection
     public CoperationApiDto( Long id
-, String coperationName  , String catchPrice, LocalDateTime modifiedDate, LocalDateTime createdDate
+, String coperationName  , String catchPrice, String isDel, LocalDateTime modifiedDate, LocalDateTime createdDate
 ) {
      this.id    = id;
      this.coperationName   = coperationName  ;
      this.catchPrice   = catchPrice  ;
+     this.isDel = isDel;
 
         this.modifiedDate = modifiedDate;
      this.createdDate     = createdDate    ;
