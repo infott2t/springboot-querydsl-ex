@@ -10,6 +10,8 @@ public class RoleUSERApiDtoForm {
     private Long id;
     private Long addressStrId;
     private Long phoneStrId;
-    private LocalDateTime createdDate;
+
     private LocalDateTime modifiedDate;
+
+    private LocalDateTime createdDate;
 }
