@@ -1,4 +1,4 @@
-package org.example.domain.user;
+package org.example.firstinstance.controller.firstinstanceurl.form;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.NoArgsConstructor;

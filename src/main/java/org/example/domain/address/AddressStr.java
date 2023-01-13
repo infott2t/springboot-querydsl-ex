@@ -11,8 +11,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-
-
 @Entity
 public class AddressStr  extends BaseTimeEntity {
 
@@ -31,12 +29,13 @@ public class AddressStr  extends BaseTimeEntity {
     //주소 풀 네임
     private String addrFull;
 
-
-    private LocalDateTime createdDate;
+    private String isDel;
     private LocalDateTime modifiedDate;
+    private LocalDateTime createdDate;
+
 
     @Builder
-    public AddressStr(String zipCode, String addr1, String addr2) {
+    public AddressStr(String zipCode, String addr1, String addr2, String isDel) {
 
         this.zipCode = zipCode;
         this.addr1 = addr1;

@@ -1,4 +1,4 @@
-package org.example.domain.roleclass.user;
+package org.example.firstinstance.controller.firstinstanceurl.form;
 
 import lombok.Data;
 

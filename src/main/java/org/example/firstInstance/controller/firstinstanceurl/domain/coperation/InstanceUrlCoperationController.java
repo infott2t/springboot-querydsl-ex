@@ -2,6 +2,7 @@ package org.example.firstinstance.controller.firstinstanceurl.domain.coperation;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.coperation.*;
+import org.example.firstinstance.controller.firstinstanceurl.form.CoperationApiDtoForm;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

@@ -6,7 +6,8 @@ import org.example.domain.address.AddressStrService;
 import org.example.domain.phone.PhoneStr;
 import org.example.domain.phone.PhoneStrService;
 import org.example.domain.roleclass.user.*;
-import org.example.domain.user.UserApiDtoForm;
+
+import org.example.firstinstance.controller.firstinstanceurl.form.RoleUSERApiDtoForm;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

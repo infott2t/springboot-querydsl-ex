@@ -1,4 +1,4 @@
-package org.example.domain.coperation;
+package org.example.firstinstance.controller.firstinstanceurl.form;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
