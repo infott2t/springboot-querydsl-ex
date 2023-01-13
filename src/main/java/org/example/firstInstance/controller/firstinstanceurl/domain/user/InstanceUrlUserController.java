@@ -306,7 +306,7 @@ public class InstanceUrlUserController {
         }else{
             role = Role.GUEST;
             user.setRole(role);
-            user.setRoleGuest(new RoleGUEST());
+            user.setRoleGuest(null);
             user.setRoleGuest(null);
             user.setRoleAdmin(null);
             user.setRoleCompany(null);
