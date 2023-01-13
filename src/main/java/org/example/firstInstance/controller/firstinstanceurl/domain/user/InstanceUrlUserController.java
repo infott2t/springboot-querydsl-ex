@@ -303,6 +303,14 @@ public class InstanceUrlUserController {
                 return "redirect:/administer/instanceurl/user/insert";
             }
 
+        }else{
+            role = Role.GUEST;
+            user.setRole(role);
+            user.setRoleGuest(new RoleGUEST());
+            user.setRoleGuest(null);
+            user.setRoleAdmin(null);
+            user.setRoleCompany(null);
+            user.setRoleUser(null);
         }
         user.setIsDel("N");
         user.setCreatedDate(LocalDateTime.now());
