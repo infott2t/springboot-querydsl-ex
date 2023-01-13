@@ -9,27 +9,19 @@ import java.time.LocalDateTime;
 public class RoleGUESTApiDto {
     private Long id;
 
-    private String a;
 
-    private LocalDateTime createDate;
+    private String isDel;
+    private LocalDateTime modifiedDate;
+    private LocalDateTime createdDate;
 
     @QueryProjection
     public RoleGUESTApiDto( Long id
-, String a
-, LocalDateTime createDate
-) {
-     this.id = id;
-
-     this.a = a;
-
-     this.createDate = createDate;
-
-
+, String isDel, LocalDateTime modifiedDate, LocalDateTime createdDate) {
+        this.id = id;
+        this.isDel = isDel;
+        this.modifiedDate = modifiedDate;
+        this.createdDate = createdDate;
     }
-/*Builder,    id().
 
- a().
 
- createDate().
-
-*/}
+}

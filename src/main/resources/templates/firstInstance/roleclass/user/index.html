@@ -106,6 +106,7 @@
             <th>id</th>
             <th>AddressStrId</th>
             <th>PhoneStrId</th>
+            <th>삭제여부</th>
             <th>수정일</th>
             <th>생성일</th>
             <th></th>
@@ -117,6 +118,7 @@
             <td th:text="${board.id}"></td>
             <td th:text="${board.addressStr?.id}"></td>
             <td th:text="${board.phoneStr?.id}"></td>
+            <td th:text="${board.isDel}"></td>
             <td th:text="${ #temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
             <td th:text="${ #temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
 

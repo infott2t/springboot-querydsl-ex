@@ -84,6 +84,7 @@ public class InstanceUrlAddressStrController {
         addressStr.setAddr2(userForm.getAddr2());
         addressStr.setAddrFull(addressStr.getZipCode() + " " + addressStr.getAddr1() + " " + addressStr.getAddr2());
 
+        addressStr.setModifiedDate(LocalDateTime.now());
         addressStr.setCreatedDate(LocalDateTime.now());
         addressStr.setIsDel("N");
 

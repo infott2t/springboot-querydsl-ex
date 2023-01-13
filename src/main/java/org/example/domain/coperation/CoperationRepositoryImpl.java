@@ -92,7 +92,7 @@ public class CoperationRepositoryImpl implements CoperationRepositoryCustom {
         if(hasText(sdate)){
             try {
                 LocalDateTime localDateTime = LocalDateTime.parse(sdate + "T00:00:00");
-                builder.or(coperation.createdDate.goe(localDateTime)); // isrtDate >= sdate
+                builder.or(coperation.modifiedDate.goe(localDateTime)); // isrtDate >= sdate
 
             } catch (DateTimeParseException e) {
             }
@@ -105,7 +105,7 @@ public class CoperationRepositoryImpl implements CoperationRepositoryCustom {
         if(hasText(edate)) {
             try {
                 LocalDateTime localDateTime = LocalDateTime.parse(edate + "T00:00:00");
-                builder.or(coperation.createdDate.loe(localDateTime)); // isrtDate <= edate
+                builder.or(coperation.modifiedDate.loe(localDateTime)); // isrtDate <= edate
 
             } catch (DateTimeParseException e) {
             }

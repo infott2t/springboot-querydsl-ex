@@ -15,17 +15,21 @@ public class RoleADMINApiDto {
     private AddressStr addressStr;
 
     private PhoneStr phoneStr;
-    private LocalDateTime createDate;
+
+    private String isDel;
+    private LocalDateTime modifiedDate;
+    private LocalDateTime createdDate;
 
     @QueryProjection
     public RoleADMINApiDto( Long id
-, AddressStr addressStr,PhoneStr phoneStr, LocalDateTime createDate
+, AddressStr addressStr,PhoneStr phoneStr,String isDel, LocalDateTime modifiedDate, LocalDateTime createdDate
 ) {
      this.id = id;
     this.addressStr = addressStr;
     this.phoneStr = phoneStr;
-
-     this.createDate = createDate;
+    this.isDel = isDel;
+    this.modifiedDate = modifiedDate;
+     this.createdDate = createdDate;
 
 
     }

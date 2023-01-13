@@ -35,7 +35,9 @@ public class RoleADMIN  {
     @JoinColumn(name = "PHONE_STR_ID")
     private PhoneStr phoneStr;
 
-    private LocalDateTime createDate;
+    private String isDel;
+    private LocalDateTime modifiedDate;
+    private LocalDateTime createdDate;
 
 
     @JsonIgnore
@@ -45,9 +47,12 @@ public class RoleADMIN  {
 
 
     @Builder
-    public RoleADMIN(AddressStr addressStr, PhoneStr phoneStr, LocalDateTime createDate) {
+    public RoleADMIN(AddressStr addressStr, PhoneStr phoneStr, String isDel, LocalDateTime modifiedDate, LocalDateTime createdDate) {
         this.addressStr = addressStr;
         this.phoneStr = phoneStr;
-        this.createDate = createDate;
+        this.isDel = isDel;
+        this.modifiedDate = modifiedDate;
+        this.createdDate = createdDate;
+
     }
 }

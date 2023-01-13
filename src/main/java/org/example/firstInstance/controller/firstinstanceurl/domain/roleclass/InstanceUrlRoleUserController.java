@@ -87,6 +87,7 @@ public class InstanceUrlRoleUSERController {
             roleUSER = new RoleUSER();
             if(addressStr !=null){roleUSER.setAddressStr(addressStr);}
             if(phoneStr !=null){roleUSER.setPhoneStr(phoneStr);}
+            roleUSER.setModifiedDate(LocalDateTime.now());
             roleUSER.setCreatedDate(LocalDateTime.now());
             roleUSER.setIsDel("N");
 

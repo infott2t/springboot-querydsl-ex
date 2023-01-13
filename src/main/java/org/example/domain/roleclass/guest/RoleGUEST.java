@@ -23,8 +23,9 @@ public class RoleGUEST {
     @Column(name = "ROLE_GUEST_ID")
     private Long id;
 
-
-    private LocalDateTime createDate;
+    private String isDel;
+    private LocalDateTime modifiedDate;
+    private LocalDateTime createdDate;
 
     @JsonIgnore
     @OneToMany(mappedBy = "roleUser")

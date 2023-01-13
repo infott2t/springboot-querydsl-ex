@@ -38,7 +38,8 @@ public class RoleUSERRepositoryImpl implements RoleUSERRepositoryCustom {
                         roleUSER.addressStr,
                         roleUSER.phoneStr,
                         roleUSER.createdDate,
-                        roleUSER.modifiedDate
+                        roleUSER.modifiedDate,
+                        roleUSER.isDel
                 )).from(roleUSER)
                 .leftJoin(roleUSER.addressStr, addressStr)
                 .leftJoin(roleUSER.phoneStr, phoneStr)
@@ -98,7 +99,7 @@ public class RoleUSERRepositoryImpl implements RoleUSERRepositoryCustom {
         if(hasText(sdate)){
             try {
                 LocalDateTime localDateTime = LocalDateTime.parse(sdate + "T00:00:00");
-                builder.or(roleUSER.createdDate.goe(localDateTime)); // isrtDate >= sdate
+                builder.or(roleUSER.modifiedDate.goe(localDateTime)); // isrtDate >= sdate
 
             } catch (DateTimeParseException e) {
             }
@@ -111,7 +112,7 @@ public class RoleUSERRepositoryImpl implements RoleUSERRepositoryCustom {
         if(hasText(edate)) {
             try {
                 LocalDateTime localDateTime = LocalDateTime.parse(edate + "T00:00:00");
-                builder.or(roleUSER.createdDate.loe(localDateTime)); // isrtDate <= edate
+                builder.or(roleUSER.modifiedDate.loe(localDateTime)); // isrtDate <= edate
 
             } catch (DateTimeParseException e) {
             }
@@ -130,7 +131,8 @@ public class RoleUSERRepositoryImpl implements RoleUSERRepositoryCustom {
                         roleUSER.addressStr,
                         roleUSER.phoneStr,
                         roleUSER.createdDate,
-                        roleUSER.modifiedDate
+                        roleUSER.modifiedDate,
+                        roleUSER.isDel
                 )).from(roleUSER).where(roleUSER.isDel.eq("N"))
                 .leftJoin(roleUSER.addressStr, addressStr)
                 .leftJoin(roleUSER.phoneStr, phoneStr)

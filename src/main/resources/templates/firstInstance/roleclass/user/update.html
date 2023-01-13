@@ -109,6 +109,7 @@
       <th>id</th>
       <th>AddressStr</th>
       <th>PhoneStr</th>
+      <th>삭제여부</th>
       <th>수정일</th>
       <th>생성일</th>
       <th></th>
@@ -124,6 +125,7 @@
       <td><input type="text" th:field="*{id}" size="2" readonly/></td>
       <td><input type="text" th:field="*{addressStrId}" size="9"/></td>
       <td><input type="text" th:field="*{phoneStrId}" size="20"/></td>
+      <td><input type="text" th:field="*{isDel}" size="10"/></td>
       <td th:text="${#temporals.format(userForm.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
       <td th:text="${#temporals.format(userForm.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
 
@@ -149,6 +151,7 @@
        <td th:text="${board.id}"></td>
        <td th:text="${board.addressStr?.id}"></td>
        <td th:text="${board.phoneStr?.id}"></td>
+       <td th:text="${board.isDel}"></td>
        <td th:text="${ #temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}"></td>
        <td th:text="${ #temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
 

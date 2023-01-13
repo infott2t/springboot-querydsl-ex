@@ -11,6 +11,7 @@ public class RoleUSERApiDtoForm {
     private Long addressStrId;
     private Long phoneStrId;
 
+    private String isDel;
     private LocalDateTime modifiedDate;
 
     private LocalDateTime createdDate;

@@ -40,7 +40,9 @@ public class RoleCOMPANY {
     @JoinColumn(name = "T_COPERATION_ID")
     private Coperation coperation;
 
-    private LocalDateTime createDate;
+    private String isDel;
+    private LocalDateTime modifiedDate;
+    private LocalDateTime createdDate;
 
     @JsonIgnore
     @OneToMany(mappedBy = "roleUser")
@@ -59,6 +61,6 @@ public class RoleCOMPANY {
         this.addressStr = addressStr;
         this.phoneStr = phoneStr;
         this.coperation = coperation;
-        this.createDate = createDate;
+        this.createdDate = createDate;
     }
 }

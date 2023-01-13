@@ -145,6 +145,7 @@ public class InstanceUrlUserController {
 
         }
         user.setIsDel("N");
+        user.setModifiedDate(LocalDateTime.now());
         user.setCreatedDate(LocalDateTime.now());
 
         userService.save(user);
