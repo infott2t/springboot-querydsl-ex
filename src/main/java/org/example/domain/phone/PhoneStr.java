@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.example.domain.BaseTimeEntity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -20,6 +21,11 @@ public class PhoneStr extends BaseTimeEntity {
 
     //전화번호
     private String phoneNumber;
+
+    private String isDel;
+    private LocalDateTime modifiedDate;
+    private LocalDateTime createdDate;
+
 
     @Builder
     public PhoneStr(String phoneNumber) {

@@ -80,10 +80,10 @@
         </td>
         <th scope="row" class="font-12">&nbsp;등록일자</th>
         <td class="font-12">
-          <input type="text" placeholder="시작일" class="ico_date" name="sdate"
+          <input type="date" placeholder="시작일" class="ico_date" name="sdate"
                  id="datepicker1" th:field="*{sdate}" autocomplete="on" style="width:100px;">
           <span class="hypen">~</span>
-          <input type="text" placeholder="종료일" class="ico_date" name="edate"
+          <input type="date" placeholder="종료일" class="ico_date" name="edate"
                  id="datepicker2" th:field="*{edate}" autocomplete="on" style="width:100px;">
         </td>
         <td>
@@ -238,7 +238,7 @@
 </nav>
 
 
-</div>
+</div>date
 
 
 
@@ -259,12 +259,12 @@
 <script src="/js/jquery-3.6.3.min.js"></script>
 <script>
   $(document).ready(function(){
-    var email = $("#email").text()
-
-    setTimeout(function () {
-      window.ReactNativeWebView.postMessage('{"email" : "'+email+'"}')
-    }, 2000)
-
+    $("#field").change(function(){
+      localStorage.setItem("field", this.value);
+    });
+    if(localStorage.getItem("field")){
+      $("#field").val(localStorage.getItem("field"));
+    }
 
   });
 

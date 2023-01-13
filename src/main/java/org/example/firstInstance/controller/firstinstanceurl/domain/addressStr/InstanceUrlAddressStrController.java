@@ -1,4 +1,4 @@
-package org.example.firstinstance.controller.firstinstanceurl.domain.addressStr;
+package org.example.firstinstance.controller.firstinstanceurl.domain.addressstr;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.address.AddressStr;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 
 
