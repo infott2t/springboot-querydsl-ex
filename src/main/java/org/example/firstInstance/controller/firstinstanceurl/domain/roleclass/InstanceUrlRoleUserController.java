@@ -1,4 +1,4 @@
-package org.example.firstinstance.controller.firstinstanceurl.domain.roleclass;
+package org.example.firstInstance.controller.firstinstanceurl.domain.roleclass;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.address.AddressStr;
@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 @Controller
-public class InstanceUrlRoleUSERController {
+public class InstanceUrlRoleUserController {
 
     private final RoleUSERService roleUSERService;
     private final AddressStrService addressStrService;
